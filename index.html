@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Agri Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-seedling"></i> 
+                <span>AgriAI</span>
+            </div>
+            <nav class="menu">
+                <button class="menu-btn active" onclick="showSection('soil-section', this)">
+                    <i class="fas fa-flask"></i> <span id="menu-soil">Soil Prediction</span>
+                </button>
+                <button class="menu-btn" onclick="showSection('history-section', this)">
+                    <i class="fas fa-history"></i> <span id="menu-hist">History Prediction</span>
+                </button>
+                <button class="menu-btn" onclick="showSection('chat-section', this)">
+                    <i class="fas fa-robot"></i> <span id="menu-chat">AI Chatbot</span>
+                </button>
+            </nav>
+            <div class="lang-select">
+                <label><i class="fas fa-language"></i> <span id="lbl-lang">Language</span></label>
+                <select id="language" onchange="changeLanguage()">
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी (Hindi)</option>
+                    <option value="te">తెలుగు (Telugu)</option>
+                    <option value="ta">தமிழ் (Tamil)</option>
+                </select>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header>
+                <h2 id="header-title">Smart Agriculture Platform</h2>
+                <div class="status-dot" id="server-status" title="Server Status"></div>
+            </header>
+
+            <section id="soil-section" class="active-section">
+                <div class="card">
+                    <h3 id="title-soil"><i class="fas fa-flask"></i> Soil Analysis</h3>
+                    <div class="grid-form">
+                        
+                        <div class="input-group">
+                            <label id="lbl-state">State</label>
+                            <select id="s-state">
+                                <option value="" disabled selected>Select State</option>
+                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                <option value="Telangana">Telangana</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Kerala">Kerala</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Odisha">Odisha</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Haryana">Haryana</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                <option value="Bihar">Bihar</option>
+                                <option value="West Bengal">West Bengal</option>
+                                <option value="Gujarat">Gujarat</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label id="lbl-dist">District</label>
+                            <input type="text" id="s-district" placeholder="Enter District Name">
+                        </div>
+
+                        <div class="input-group">
+                            <label id="lbl-soil">Soil Type</label>
+                            <select id="s-soil">
+                                <option value="" disabled selected>Select Soil Type</option>
+                                <option value="Alluvial">Alluvial</option>
+                                <option value="Black">Black</option>
+                                <option value="Red">Red</option>
+                                <option value="Loamy">Loamy</option>
+                                <option value="Sandy">Sandy</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group"><label id="lbl-ph">pH Level</label><input type="number" id="s-ph" placeholder="e.g. 6.5" step="0.1"></div>
+                        <div class="input-group"><label id="lbl-n">Nitrogen (N)</label><input type="number" id="s-n" placeholder="e.g. 120"></div>
+                        <div class="input-group"><label id="lbl-p">Phosphorus (P)</label><input type="number" id="s-p" placeholder="e.g. 40"></div>
+                        <div class="input-group"><label id="lbl-k">Potassium (K)</label><input type="number" id="s-k" placeholder="e.g. 60"></div>
+                        <div class="input-group"><label id="lbl-temp">Temperature</label><input type="number" id="s-temp" placeholder="e.g. 30"></div>
+                        <div class="input-group"><label id="lbl-rain">Rainfall</label><input type="number" id="s-rain" placeholder="e.g. 1000"></div>
+                        <div class="input-group"><label id="lbl-humid">Humidity</label><input type="number" id="s-humid" placeholder="e.g. 50"></div>
+                    </div>
+                    
+                    <div class="actions">
+                        <button class="btn-primary" onclick="predictSoil()" id="btn-predict1">Analyze & Predict</button>
+                        <button class="btn-voice" onclick="startVoice('soil')"><i class="fas fa-microphone"></i></button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="history-section" class="hidden">
+                <div class="card">
+                    <h3 id="title-hist"><i class="fas fa-history"></i> Historical Trends</h3>
+                    <div class="grid-form">
+                        
+                        <div class="input-group">
+                            <label id="lbl-h-state">State</label>
+                            <select id="h-state">
+                                <option value="" disabled selected>Select State</option>
+                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                <option value="Telangana">Telangana</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Odisha">Odisha</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Haryana">Haryana</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label id="lbl-h-soil">Soil Type</label>
+                             <select id="h-soil">
+                                <option value="" disabled selected>Select Soil Type</option>
+                                <option value="Alluvial">Alluvial</option>
+                                <option value="Black">Black</option>
+                                <option value="Red">Red</option>
+                                <option value="Loamy">Loamy</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label id="lbl-prev">Previous Crop</label>
+                            <input type="text" id="h-prev" placeholder="e.g. Wheat">
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <button class="btn-primary" onclick="predictHistory()" id="btn-predict2">Predict Next Crop</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="chat-section" class="hidden">
+                <div class="chat-container">
+                    <div class="chat-history" id="chat-box">
+                        <div class="msg bot" id="bot-welcome">Hello! I am your Agri-Assistant.</div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="chat-input" placeholder="Type your question...">
+                        <button onclick="sendChat()"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </section>
+
+            <div id="result-card" class="result-card hidden">
+                <h3 id="res-title"><i class="fas fa-check-circle"></i> Prediction Result</h3>
+                <div class="res-grid">
+                    <div class="res-item"><span id="lbl-crop">Best Crop</span><h4 id="res-crop">--</h4></div>
+                    <div class="res-item"><span id="lbl-yield">Est. Yield</span><h4 id="res-yield">--</h4></div>
+                    <div class="res-item"><span id="lbl-fert">Fertilizer</span><h4 id="res-fert">--</h4></div>
+                </div>
+                <button class="btn-voice" onclick="speakResult()" id="btn-listen">🔊 Listen</button>
+            </div>
+        </main>
+    </div>
+    <script src="logic.js"></script>
+</body>
+</html>
