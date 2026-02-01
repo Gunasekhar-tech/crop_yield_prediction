@@ -1,0 +1,65 @@
+1. Software Requirements (Prerequisites)
+Before writing code, ensure your computer has:
+
+Python (Version 3.8 or higher): To run the backend logic.
+
+VS Code (Visual Studio Code): The code editor to manage files.
+
+Web Browser: Google Chrome, Edge, or Firefox to test the website.
+
+2. Python Libraries (Backend Dependencies)
+You must install these libraries to make the AI work. Run this command in your terminal:
+pip install flask flask-cors pandas scikit-learn openpyxl
+
+Flask: Creates the web server.
+
+Flask-CORS: Allows the frontend to talk to the backend.
+
+Pandas: Reads the Excel/CSV data files.
+
+Scikit-Learn: Builds the AI models (Random Forest).
+
+Openpyxl: Reads Excel files (if your data is .xlsx).
+
+3. Dataset Requirements (The "Brain" Data)
+You need two specific CSV files in your project folder.
+
+File 1 (Soil Data): Smart_Agriculture_10000_Rows_Final_No_Unknown.xlsx - Sheet1.csv
+
+Columns: State, District, Soil_Type, Nitrogen, Phosphorus, Potassium, pH, Temperature, Rainfall, Humidity, Crop, Yield, Fertilizer.
+
+File 2 (History Data): Smart_Agriculture_10000_Rows.xlsx - Historical_Based.csv
+
+Columns: State, Season, Soil_Type, Previous_Crop, Recommended_Crop.
+
+4. Folder Structure Requirement
+Your project must be organized exactly like this for the code to work:
+
+Plaintext
+AgriProject/
+├── app.py                   (The Python Backend)
+├── requirements.txt         (List of libraries)
+├── [Your_2_CSV_Files_Here]
+└── public/
+    ├── index.html           (The Website UI)
+    ├── dashboard.css        (The Styling)
+    └── logic.js             (The Connecting Logic)
+5. Hardware Requirements
+Computer: Any standard laptop or PC (Windows, Mac, or Linux).
+
+Internet: Required only to install libraries and load fonts/icons (FontAwesome). The app itself runs offline locally once installed.
+
+Microphone: Required if you want to test the "Voice Input" feature.
+
+6. Functional Requirements (What the App Does)
+Prediction: Must predict Crop, Yield, and Fertilizer based on soil inputs.
+
+Dual Mode: Must support both "Soil Analysis" and "Historical Trend" prediction.
+
+Language: Must support switching between English, Hindi, Telugu, and Tamil.
+
+Voice: Must accept voice input for the "State" field.
+
+Chatbot: Must answer basic farming questions (Rule-based).
+
+Resilience: Must show a "Demo Result" if the backend is offline, so the UI never breaks.
